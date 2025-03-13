@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _moveSpeed = 7f;
     [SerializeField] private float _rotationSpeed = 10f;
     [SerializeField] private float _interactDist = 2f; //the max dist for interaction raycast
+    [SerializeField] private LayerMask countersLayerMask;
 
     [SerializeField] private GameInput gameInput;
 
@@ -40,13 +41,15 @@ public class Player : MonoBehaviour
         }
 
         //do a raycast to check whether the player can interact with something or not
-        if (Physics.Raycast(transform.position, _lastInteractDir, out RaycastHit raycastHit,_interactDist))
+        if (Physics.Raycast(transform.position, _lastInteractDir, out RaycastHit raycastHit,_interactDist, countersLayerMask))
         {
-            //player can interact with something
-        }
-        else
-        {
-            //player is too far away and cannot interact with anything
+            //if raycast true, player is close enough to something
+
+            //check if this something can be interacted with
+            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
+            {
+                clearCounter.Interact();
+            }
         }
     }
 

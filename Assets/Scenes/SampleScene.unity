@@ -630,6 +630,9 @@ MonoBehaviour:
   _moveSpeed: 7
   _rotationSpeed: 10
   _interactDist: 2
+  countersLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   gameInput: {fileID: 2121008293}
 --- !u!1001 &1939573331
 PrefabInstance:
