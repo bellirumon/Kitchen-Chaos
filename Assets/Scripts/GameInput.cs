@@ -4,30 +4,24 @@ using UnityEngine;
 
 public class GameInput : MonoBehaviour
 {
-    
-    
+    //a reference to the generated class from the Player Input Actions asset
+    private PlayerInputActions _playerInputActions;
+
+
+    private void Awake()
+    {
+        //instantiate an object of class
+        _playerInputActions = new PlayerInputActions();
+
+        //enable the "Player" Action Map 
+        _playerInputActions.Player.Enable();
+    }
+
+
     public Vector2 GetMovementVectorNormalized()
     {
-        //to store player input (2D)
-        Vector2 inputDir = Vector2.zero;
-
-        //get player input
-        if (Input.GetKey(KeyCode.W))
-        {
-            inputDir.y = 1;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            inputDir.y = -1;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            inputDir.x = -1;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            inputDir.x = 1;
-        }
+        //read and store player input via New Input System
+        Vector2 inputDir = _playerInputActions.Player.Move.ReadValue<Vector2>();
 
         //normalize to account for diagonal movement 
         inputDir = inputDir.normalized;
