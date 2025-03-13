@@ -33,6 +33,42 @@ public class Player : MonoBehaviour
         //do a raycast for collision detection
         _canMove = !Physics.CapsuleCast(transform.position, transform.position + (Vector3.up * _playerHeight), _playerRadius, moveDir, _moveDist);
         
+        if (!_canMove)
+        {
+            //if cannot move (diagonal capsule cast)
+
+            //attempt only x movement (wall hug movement)
+            Vector3 moveDirX = new Vector3(moveDir.x, 0f, 0f).normalized; //account for diagonal movement error
+
+            //do a raycast for collision detection
+            _canMove = !Physics.CapsuleCast(transform.position, transform.position + (Vector3.up * _playerHeight), _playerRadius, moveDirX, _moveDist);
+
+            if (_canMove)
+            {
+                //move in x direction only (wall hug)
+                moveDir = moveDirX;
+            }
+            else 
+            {
+                //attempt only z movement
+                Vector3 moveDirZ = new Vector3(0f, 0f, moveDir.z).normalized; //account for diagonal movement error
+
+                //do a raycast for collision detection
+                _canMove = !Physics.CapsuleCast(transform.position, transform.position + (Vector3.up * _playerHeight), _playerRadius, moveDirZ, _moveDist);
+
+                if (_canMove)
+                {
+                    //move in z direction only (wall hug)
+                    moveDir = moveDirZ;
+                }
+                else
+                {
+                    //cannot move in either direction (player is trying to move into a corner)
+                }
+            }
+
+        }
+
         //move player if possible
         if (_canMove)
         {
