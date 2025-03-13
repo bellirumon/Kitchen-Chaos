@@ -5,7 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float moveSpeed = 7f;
+    [SerializeField] private float rotationSpeed = 10f;
 
 
     private void Update()
@@ -39,6 +40,9 @@ public class Player : MonoBehaviour
 
         //move player
         transform.position += Time.deltaTime * moveSpeed * moveDir;
+
+        //rotate player to face direction of movement
+        transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotationSpeed);
 
     }
 }
