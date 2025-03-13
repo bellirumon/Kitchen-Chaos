@@ -1,9 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameInput : MonoBehaviour
 {
+
+    public event Action OnInteractInputAction;
+
+
     //a reference to the generated class from the Player Input Actions asset
     private PlayerInputActions _playerInputActions;
 
@@ -15,6 +20,15 @@ public class GameInput : MonoBehaviour
 
         //enable the "Player" Action Map 
         _playerInputActions.Player.Enable();
+
+        //add a listener to the "Interact" input action
+        _playerInputActions.Player.Interact.performed += Interact_performed;
+    }
+
+
+    private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnInteractInputAction?.Invoke();
     }
 
 

@@ -8,9 +8,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float _moveSpeed = 7f;
     [SerializeField] private float _rotationSpeed = 10f;
     [SerializeField] private float _interactDist = 2f; //the max dist for interaction raycast
-    [SerializeField] private LayerMask countersLayerMask;
+    [SerializeField] private LayerMask _countersLayerMask;
 
-    [SerializeField] private GameInput gameInput;
+    [SerializeField] private GameInput _gameInput;
 
     public bool IsWalking { get; private set; }
 
@@ -20,17 +20,17 @@ public class Player : MonoBehaviour
     private bool _canMove; //can the player move or not
     private Vector3 _lastInteractDir; //the latest move dir before moveDir becoms 0 (player stops pressing any input buttons)
 
-    private void Update()
+
+    private void Start()
     {
-        HandleMovement();
-        HandleInteractions();
+        _gameInput.OnInteractInputAction += GameInput_OnInteractInputAction;
     }
 
 
-    private void HandleInteractions()
+    private void GameInput_OnInteractInputAction()
     {
         //get the normalized player input direction vectosr (2D movement)
-        Vector2 inputDir = gameInput.GetMovementVectorNormalized();
+        Vector2 inputDir = _gameInput.GetMovementVectorNormalized();
 
         //cast 2D input to 3D vector for world movement
         Vector3 moveDir = new(inputDir.x, 0f, inputDir.y);
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         }
 
         //do a raycast to check whether the player can interact with something or not
-        if (Physics.Raycast(transform.position, _lastInteractDir, out RaycastHit raycastHit,_interactDist, countersLayerMask))
+        if (Physics.Raycast(transform.position, _lastInteractDir, out RaycastHit raycastHit, _interactDist, _countersLayerMask))
         {
             //if raycast true, player is close enough to something
 
@@ -54,10 +54,44 @@ public class Player : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        HandleMovement();
+        HandleInteractions();
+    }
+
+
+    private void HandleInteractions()
+    {
+        //get the normalized player input direction vectosr (2D movement)
+        Vector2 inputDir = _gameInput.GetMovementVectorNormalized();
+
+        //cast 2D input to 3D vector for world movement
+        Vector3 moveDir = new(inputDir.x, 0f, inputDir.y);
+
+        if (moveDir != Vector3.zero)
+        {
+            _lastInteractDir = moveDir;
+        }
+
+        //do a raycast to check whether the player can interact with something or not
+        if (Physics.Raycast(transform.position, _lastInteractDir, out RaycastHit raycastHit,_interactDist, _countersLayerMask))
+        {
+            //if raycast true, player is close enough to something
+
+            //check if this something can be interacted with
+            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
+            {
+                
+            }
+        }
+    }
+
+
     private void HandleMovement()
     {
         //get the normalized player input direction vectosr (2D movement)
-        Vector2 inputDir = gameInput.GetMovementVectorNormalized();
+        Vector2 inputDir = _gameInput.GetMovementVectorNormalized();
 
         //cast 2D input to 3D vector for world movement
         Vector3 moveDir = new(inputDir.x, 0f, inputDir.y);
