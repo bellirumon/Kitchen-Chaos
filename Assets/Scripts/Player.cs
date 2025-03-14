@@ -1,9 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    public static Player Instance { get; private set; }
+
+    public event Action<ClearCounter> OnSelectedCounterChanged;
 
     [SerializeField] private float _moveSpeed = 7f;
     [SerializeField] private float _rotationSpeed = 10f;
@@ -20,6 +25,20 @@ public class Player : MonoBehaviour
     private bool _canMove; //can the player move or not
     private Vector3 _lastInteractDir; //the latest move dir before moveDir becoms 0 (player stops pressing any input buttons)
     private ClearCounter _selectedCounter; //to keep track of the currently selected clear counter
+
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("An instance of Player already exists! Destroying this instance");
+            Destroy(gameObject);
+
+            return;
+        }    
+
+        Instance = this;
+    }
 
 
     private void Start()
@@ -68,19 +87,19 @@ public class Player : MonoBehaviour
                 //interactable thing is a ClearCounter
                 if (clearCounter != _selectedCounter)
                 {
-                    _selectedCounter = clearCounter;
+                    SetSelectedCounter(clearCounter);
                 }
             }
             else
             {
                 //the interactable thing is not a ClearCounter, hence no counter is selected
-                _selectedCounter = null;
+                SetSelectedCounter(null);
             }
         }
         else
         {
             //if raycast detects nothing, remove any selected counter
-            _selectedCounter = null;
+            SetSelectedCounter(null);
         }
     }
 
@@ -147,5 +166,16 @@ public class Player : MonoBehaviour
         //rotate player to face direction of movement
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * _rotationSpeed);
     }
+
+
+    private void SetSelectedCounter(ClearCounter selectedCounter)
+    {
+        //set the selected counter
+        _selectedCounter = selectedCounter;
+
+        //fire the event to inform that a counter has been selected
+        OnSelectedCounterChanged?.Invoke(_selectedCounter);
+    }
+
 
 }
