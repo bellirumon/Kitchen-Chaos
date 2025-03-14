@@ -630,10 +630,10 @@ MonoBehaviour:
   _moveSpeed: 7
   _rotationSpeed: 10
   _interactDist: 2
-  countersLayerMask:
+  _countersLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  gameInput: {fileID: 2121008293}
+  _gameInput: {fileID: 2121008293}
 --- !u!1001 &1939573331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -645,7 +645,7 @@ PrefabInstance:
     - target: {fileID: 4883005402364070558, guid: edfb0296ffd1b8a47beb46cf1023df33,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.54
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4883005402364070558, guid: edfb0296ffd1b8a47beb46cf1023df33,
         type: 3}
@@ -655,7 +655,7 @@ PrefabInstance:
     - target: {fileID: 4883005402364070558, guid: edfb0296ffd1b8a47beb46cf1023df33,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.87
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4883005402364070558, guid: edfb0296ffd1b8a47beb46cf1023df33,
         type: 3}
@@ -789,7 +789,7 @@ PrefabInstance:
     - target: {fileID: 4883005402364070558, guid: edfb0296ffd1b8a47beb46cf1023df33,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.04
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4883005402364070558, guid: edfb0296ffd1b8a47beb46cf1023df33,
         type: 3}
@@ -799,7 +799,7 @@ PrefabInstance:
     - target: {fileID: 4883005402364070558, guid: edfb0296ffd1b8a47beb46cf1023df33,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.87
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4883005402364070558, guid: edfb0296ffd1b8a47beb46cf1023df33,
         type: 3}

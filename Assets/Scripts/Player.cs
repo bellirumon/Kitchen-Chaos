@@ -1,9 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    public static Player Instance { get; private set; }
+
+    public event Action<ClearCounter> OnSelectedCounterChanged;
 
     [SerializeField] private float _moveSpeed = 7f;
     [SerializeField] private float _rotationSpeed = 10f;
@@ -19,6 +24,21 @@ public class Player : MonoBehaviour
     private float _moveDist; //how much distance the player will move in a frame 
     private bool _canMove; //can the player move or not
     private Vector3 _lastInteractDir; //the latest move dir before moveDir becoms 0 (player stops pressing any input buttons)
+    private ClearCounter _selectedCounter; //to keep track of the currently selected clear counter
+
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("An instance of Player already exists! Destroying this instance");
+            Destroy(gameObject);
+
+            return;
+        }    
+
+        Instance = this;
+    }
 
 
     private void Start()
@@ -29,27 +49,9 @@ public class Player : MonoBehaviour
 
     private void GameInput_OnInteractInputAction()
     {
-        //get the normalized player input direction vectosr (2D movement)
-        Vector2 inputDir = _gameInput.GetMovementVectorNormalized();
-
-        //cast 2D input to 3D vector for world movement
-        Vector3 moveDir = new(inputDir.x, 0f, inputDir.y);
-
-        if (moveDir != Vector3.zero)
+        if (_selectedCounter != null)
         {
-            _lastInteractDir = moveDir;
-        }
-
-        //do a raycast to check whether the player can interact with something or not
-        if (Physics.Raycast(transform.position, _lastInteractDir, out RaycastHit raycastHit, _interactDist, _countersLayerMask))
-        {
-            //if raycast true, player is close enough to something
-
-            //check if this something can be interacted with
-            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
-            {
-                clearCounter.Interact();
-            }
+            _selectedCounter.Interact();
         }
     }
 
@@ -74,16 +76,30 @@ public class Player : MonoBehaviour
             _lastInteractDir = moveDir;
         }
 
-        //do a raycast to check whether the player can interact with something or not
+        //do a raycast to check whether the player can interact with something interactable or not
         if (Physics.Raycast(transform.position, _lastInteractDir, out RaycastHit raycastHit,_interactDist, _countersLayerMask))
         {
-            //if raycast true, player is close enough to something
+            //if raycast true, player is close enough to something interactable
 
-            //check if this something can be interacted with
+            //get a reference to the interactable object
             if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
             {
-                
+                //interactable thing is a ClearCounter
+                if (clearCounter != _selectedCounter)
+                {
+                    SetSelectedCounter(clearCounter);
+                }
             }
+            else
+            {
+                //the interactable thing is not a ClearCounter, hence no counter is selected
+                SetSelectedCounter(null);
+            }
+        }
+        else
+        {
+            //if raycast detects nothing, remove any selected counter
+            SetSelectedCounter(null);
         }
     }
 
@@ -150,5 +166,16 @@ public class Player : MonoBehaviour
         //rotate player to face direction of movement
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * _rotationSpeed);
     }
+
+
+    private void SetSelectedCounter(ClearCounter selectedCounter)
+    {
+        //set the selected counter
+        _selectedCounter = selectedCounter;
+
+        //fire the event to inform that a counter has been selected
+        OnSelectedCounterChanged?.Invoke(_selectedCounter);
+    }
+
 
 }
