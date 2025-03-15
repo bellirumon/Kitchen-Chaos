@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContainerCounter : BaseCounter, IKitchenObjectParent
+public class ContainerCounter : BaseCounter
 {
 
     public event Action OnPlayerGrabbedObject;
@@ -13,11 +13,12 @@ public class ContainerCounter : BaseCounter, IKitchenObjectParent
 
     public override void Interact(Player player)
     {
-        //if the counter has no kitchen object, spawn one
-        if (!HasKitchenObject())
+        if (!player.HasKitchenObject())
         {
+            //player is not carrying anything, spawn an object
             Transform kitchenObjectTr = Instantiate(_kitchenObjectSO.Prefab);
             kitchenObjectTr.GetComponent<KitchenObject>().SetKitchenObjectParent(player);
+
             OnPlayerGrabbedObject?.Invoke();
         }
     }
