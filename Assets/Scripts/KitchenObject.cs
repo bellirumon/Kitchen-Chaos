@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class KitchenObject : MonoBehaviour
 {
@@ -9,30 +10,31 @@ public class KitchenObject : MonoBehaviour
     public KitchenObjectSO KitchenObjectSO => _kitchenObjectSO;
 
 
-    //to keep track of the clear counter that this kitchen object is put on
-    public ClearCounter ClearCounter 
-    { 
-        get
+    //to keep track of the parent that this kitchen object is owned by
+    private IKitchenObjectParent _kitchenObjectParent; 
+    
+
+    public void SetKitchenObjectParent(IKitchenObjectParent kitchenObjectParent)
+    {
+        //if the kitchen object currently already has a parent
+        if (_kitchenObjectParent != null)
         {
-            return ClearCounter;
+            //ensure that the current parent disowns it
+            _kitchenObjectParent.ClearKitchenObject();
         }
 
-        set
-        {
-            //if the kitchen object currently already has a clear counter
-            if (ClearCounter != null)
-            {
-                //ensure that the current clear counter gets rid of this kitchen object and disowns it
-                ClearCounter.ClearKitchenObject();
-            }
+        _kitchenObjectParent = kitchenObjectParent; //set the current parent for this kitchen object to the newly received parent
+        kitchenObjectParent.SetKitchenObject(this); //tell the newly received parent to own this kitchen object
 
-            ClearCounter = value; //set the current clear counter for this kitchen object to the newly received clear counter
-            value.SetKitchenObject(this); //tell the newly received clear counter to own this kitchen object as its own 
+        //update the position of this kitchen object so that the newly received parent now shows this kitchen object on top of it
+        transform.parent = kitchenObjectParent.GetKitchenObjectPlacementPoint();
+        transform.localPosition = Vector3.zero;
+    }
 
-            //update the position of this kitchen object so that the newly received clear counter now shows this kitchen object on top of it
-            transform.parent = value.CounterTopPoint;
-            transform.localPosition = Vector3.zero;
-        } 
+    
+    public IKitchenObjectParent GetKitchenObjectParent()
+    {
+        return _kitchenObjectParent;
     }
 
 

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IKitchenObjectParent
 {
 
     public static Player Instance { get; private set; }
@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 10f;
     [SerializeField] private float _interactDist = 2f; //the max dist for interaction raycast
     [SerializeField] private LayerMask _countersLayerMask;
+    [SerializeField] private Transform _kitchenObjectHoldPoint; //the point where the player will hold objects in hand
 
     [SerializeField] private GameInput _gameInput;
 
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
     private bool _canMove; //can the player move or not
     private Vector3 _lastInteractDir; //the latest move dir before moveDir becoms 0 (player stops pressing any input buttons)
     private ClearCounter _selectedCounter; //to keep track of the currently selected clear counter
+    private KitchenObject _kitchenObject; //to keep track of the current kitchen object the player has
 
 
     private void Awake()
@@ -51,7 +53,7 @@ public class Player : MonoBehaviour
     {
         if (_selectedCounter != null)
         {
-            _selectedCounter.Interact();
+            _selectedCounter.Interact(this);
         }
     }
 
@@ -84,7 +86,7 @@ public class Player : MonoBehaviour
             //get a reference to the interactable object
             if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
             {
-                //interactable thing is a ClearCounter
+                //interactable thing is a KitchenObjectParent
                 if (clearCounter != _selectedCounter)
                 {
                     SetSelectedCounter(clearCounter);
@@ -92,7 +94,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                //the interactable thing is not a ClearCounter, hence no counter is selected
+                //the interactable thing is not a KitchenObjectParent, hence no counter is selected
                 SetSelectedCounter(null);
             }
         }
@@ -177,5 +179,28 @@ public class Player : MonoBehaviour
         OnSelectedCounterChanged?.Invoke(_selectedCounter);
     }
 
+    public Transform GetKitchenObjectPlacementPoint()
+    {
+        return _kitchenObjectHoldPoint;
+    }
 
+    public KitchenObject GetKitchenObject()
+    {
+        return _kitchenObject;
+    }
+
+    public void SetKitchenObject(KitchenObject kitchenObject)
+    {
+        _kitchenObject = kitchenObject;
+    }
+
+    public void ClearKitchenObject()
+    {
+        _kitchenObject = null;
+    }
+
+    public bool HasKitchenObject()
+    {
+        return _kitchenObject != null;
+    }
 }
