@@ -15,7 +15,6 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     [SerializeField] private float _interactDist = 2f; //the max dist for interaction raycast
     [SerializeField] private LayerMask _countersLayerMask;
     [SerializeField] private Transform _kitchenObjectHoldPoint; //the point where the player will hold objects in hand
-
     [SerializeField] private GameInput _gameInput;
 
     public bool IsWalking { get; private set; }
