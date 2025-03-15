@@ -15,7 +15,7 @@ public class SelectedCounterVisual : MonoBehaviour
     }
 
 
-    private void Player_OnSelectedCounterChanged(ClearCounter selectedCounter)
+    private void Player_OnSelectedCounterChanged(BaseCounter selectedCounter)
     {
         //check if the counter selected by the player and this clear counter are same
         if (selectedCounter == _clearCounter)

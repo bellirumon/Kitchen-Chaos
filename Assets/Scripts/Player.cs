@@ -8,7 +8,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     public static Player Instance { get; private set; }
 
-    public event Action<ClearCounter> OnSelectedCounterChanged;
+    public event Action<BaseCounter> OnSelectedCounterChanged;
 
     [SerializeField] private float _moveSpeed = 7f;
     [SerializeField] private float _rotationSpeed = 10f;
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     private float _moveDist; //how much distance the player will move in a frame 
     private bool _canMove; //can the player move or not
     private Vector3 _lastInteractDir; //the latest move dir before moveDir becoms 0 (player stops pressing any input buttons)
-    private ClearCounter _selectedCounter; //to keep track of the currently selected clear counter
+    private BaseCounter _selectedCounter; //to keep track of the currently selected clear counter
     private KitchenObject _kitchenObject; //to keep track of the current kitchen object the player has
 
 
@@ -83,12 +83,12 @@ public class Player : MonoBehaviour, IKitchenObjectParent
             //if raycast true, player is close enough to something interactable
 
             //get a reference to the interactable object
-            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
+            if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter))
             {
                 //interactable thing is a KitchenObjectParent
-                if (clearCounter != _selectedCounter)
+                if (baseCounter != _selectedCounter)
                 {
-                    SetSelectedCounter(clearCounter);
+                    SetSelectedCounter(baseCounter);
                 }
             }
             else
@@ -169,7 +169,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     }
 
 
-    private void SetSelectedCounter(ClearCounter selectedCounter)
+    private void SetSelectedCounter(BaseCounter selectedCounter)
     {
         //set the selected counter
         _selectedCounter = selectedCounter;
