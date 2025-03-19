@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine.Windows;
 
 public class CuttingCounter : BaseCounter
 {
+
+    public event Action<float> OnProgressChanged;
+    public event Action OnCut;
 
     [SerializeField] private CuttingRecipeSO[] _cuttingRecipeSO;
 
@@ -27,6 +31,11 @@ public class CuttingCounter : BaseCounter
                     player.GetKitchenObject().SetKitchenObjectParent(this);
 
                     _cuttingProgress = 0;
+
+                    CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().KitchenObjectSO);
+
+                    //pass a normalized 9b/w 0 and 1) cutting progress as it is to be the fill amount of the progress bar image
+                    OnProgressChanged?.Invoke((float)_cuttingProgress / cuttingRecipeSO.CuttingProgressMax); 
                 }
                 else
                 {
@@ -65,7 +74,14 @@ public class CuttingCounter : BaseCounter
             //counter has a kitchen object AND it has a cutting recipe, so cut it (destroy kitchen object and spawn in sliced kitchen object)
             _cuttingProgress++;
 
+            //fire the event to play the knife animation
+            OnCut?.Invoke();
+
             CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().KitchenObjectSO);
+
+            //fire the event to update the progress bar
+            //pass a normalized 9b/w 0 and 1) cutting progress as it is to be the fill amount of the progress bar image
+            OnProgressChanged?.Invoke((float)_cuttingProgress / cuttingRecipeSO.CuttingProgressMax);
 
             if (_cuttingProgress >= cuttingRecipeSO.CuttingProgressMax)
             {
