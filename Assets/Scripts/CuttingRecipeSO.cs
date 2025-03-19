@@ -8,4 +8,7 @@ public class CuttingRecipeSO : ScriptableObject
 
     [SerializeField] private KitchenObjectSO _output;
     public KitchenObjectSO Output => _output;
+
+    [SerializeField] private int _cuttingProgressMax;
+    public int CuttingProgressMax => _cuttingProgressMax;
 }
