@@ -105,6 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _counterTopPoint: {fileID: 7098178838264425212}
+  _cutKitchenObjectSO: {fileID: 11400000, guid: ae1eac5d9f117d74e9ae420163190671,
+    type: 2}
 --- !u!4 &7098178838264425212 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2577927134998704467, guid: 57e05a79de494bb4cad00f81bcee22f0,
@@ -344,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17aa660eedbf87140a24dd0cbe32de47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseCounter: {fileID: 0}
+  _baseCounter: {fileID: 7055679681103916808}
   _visualGameObject:
   - {fileID: 484409439895779982}
   - {fileID: 4492275617890803303}

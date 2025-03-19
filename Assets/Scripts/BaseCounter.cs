@@ -16,6 +16,12 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
     }
 
 
+    public virtual void InteractAlternate(Player player)
+    {
+        Debug.LogError("BaseCounter.InteractAlternate();");
+    }
+
+
     public Transform GetKitchenObjectPlacementPoint()
     {
         return _counterTopPoint;

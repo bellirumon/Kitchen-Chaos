@@ -7,6 +7,7 @@ public class GameInput : MonoBehaviour
 {
 
     public event Action OnInteractInputAction;
+    public event Action OnInteractAlternateInputAction;
 
 
     //a reference to the generated class from the Player Input Actions asset
@@ -21,10 +22,15 @@ public class GameInput : MonoBehaviour
         //enable the "Player" Action Map 
         _playerInputActions.Player.Enable();
 
-        //add a listener to the "Interact" input action
+        //add a listener to the "Interact" and "InteractAlternate" input actions
         _playerInputActions.Player.Interact.performed += Interact_performed;
+        _playerInputActions.Player.InteractAlternate.performed += InteractAlternate_performed;
     }
 
+    private void InteractAlternate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnInteractAlternateInputAction?.Invoke();
+    }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
