@@ -135,7 +135,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
             Vector3 moveDirX = new Vector3(moveDir.x, 0f, 0f).normalized; //account for diagonal movement error
 
             //do a raycast for collision detection
-            _canMove = !Physics.CapsuleCast(transform.position, transform.position + (Vector3.up * _playerHeight), _playerRadius, moveDirX, _moveDist);
+            _canMove = moveDirX != Vector3.zero && !Physics.CapsuleCast(transform.position, transform.position + (Vector3.up * _playerHeight), _playerRadius, moveDirX, _moveDist);
 
             if (_canMove)
             {
@@ -148,7 +148,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
                 Vector3 moveDirZ = new Vector3(0f, 0f, moveDir.z).normalized; //account for diagonal movement error
 
                 //do a raycast for collision detection
-                _canMove = !Physics.CapsuleCast(transform.position, transform.position + (Vector3.up * _playerHeight), _playerRadius, moveDirZ, _moveDist);
+                _canMove = moveDirZ != Vector3.zero && !Physics.CapsuleCast(transform.position, transform.position + (Vector3.up * _playerHeight), _playerRadius, moveDirZ, _moveDist);
 
                 if (_canMove)
                 {
