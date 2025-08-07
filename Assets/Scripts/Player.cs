@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IKitchenObjectParent
 {
-
-    public static Player Instance { get; private set; }
-
+    public event Action OnPickedSomething;
     public event Action<BaseCounter> OnSelectedCounterChanged;
+    
+    public static Player Instance { get; private set; }
 
     [SerializeField] private float _moveSpeed = 7f;
     [SerializeField] private float _rotationSpeed = 10f;
@@ -199,6 +199,11 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     public void SetKitchenObject(KitchenObject kitchenObject)
     {
         _kitchenObject = kitchenObject;
+    
+        if (kitchenObject != null )
+        {
+            OnPickedSomething?.Invoke();
+        }
     }
 
     public void ClearKitchenObject()

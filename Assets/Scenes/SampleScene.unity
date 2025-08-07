@@ -725,6 +725,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 356574426}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &383977619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 383977620}
+  - component: {fileID: 383977621}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &383977620
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383977619}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &383977621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383977619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4988f513409e2848b94a0527a9878c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClipRefsSO: {fileID: 11400000, guid: da58ce40a4c98614dbbecc82f725d68a, type: 2}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3386,6 +3431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1906070923}
   - component: {fileID: 1906070924}
+  - component: {fileID: 1906070925}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3430,6 +3476,18 @@ MonoBehaviour:
     m_Bits: 64
   _kitchenObjectHoldPoint: {fileID: 944997613}
   _gameInput: {fileID: 2121008293}
+--- !u!114 &1906070925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906070922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6052806476f5a74eb75ced289cff8d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1921683599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4031,3 +4089,4 @@ SceneRoots:
   - {fileID: 1620867860}
   - {fileID: 2012178375}
   - {fileID: 1993535467}
+  - {fileID: 383977620}

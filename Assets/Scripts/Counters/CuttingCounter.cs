@@ -6,7 +6,8 @@ using UnityEngine.Windows;
 
 public class CuttingCounter : BaseCounter, IHasProgress
 {
-
+    //use event handler for this one so that we can pass "this" as the sender object
+    public static event EventHandler OnAnyCut;
     public event Action<float> OnProgressChanged;
     public event Action OnCut;
 
@@ -84,6 +85,7 @@ public class CuttingCounter : BaseCounter, IHasProgress
 
             //fire the event to play the knife animation
             OnCut?.Invoke();
+            OnAnyCut?.Invoke(this, EventArgs.Empty);
 
             CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().KitchenObjectSO);
 
