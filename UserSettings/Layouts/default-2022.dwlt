@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 321}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 126
+  controlID: 122
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -196,8 +196,8 @@ MonoBehaviour:
     y: 469
     width: 907
     height: 470
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -249,8 +249,8 @@ MonoBehaviour:
     y: 0
     width: 465
     height: 466
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -792,9 +792,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 4.5, y: 0, z: 3.5}
+    m_Target: {x: 331.7336, y: 181.87679, z: 0}
     speed: 2
-    m_Value: {x: 4.5, y: 0, z: 3.5}
+    m_Value: {x: 331.7336, y: 181.87679, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -844,9 +844,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 0.8660254
+    m_Target: 270.40823
     speed: 2
-    m_Value: 0.8660254
+    m_Value: 270.40823
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -864,8 +864,8 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
-  m_LastSceneViewOrtho: 0
+  m_LastSceneViewRotation: {x: 0.36487004, y: -0.0055863196, z: 0.002189263, w: 0.93104035}
+  m_LastSceneViewOrtho: 1
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
   m_SceneVisActive: 1
@@ -1598,7 +1598,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 28098
+  m_LastSelectedObjectID: -56210
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1637,9 +1637,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: c26d0000
-      m_LastClickedID: 28098
-      m_ExpandedIDs: 1afbffff
+      m_SelectedIDs: 2acc0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 8c1bffff3224ffff6e24ffff2225ffffd225ffff3e48ffff3a90ffff249cffff0cd2ffff26fbfffff46c00006a960000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1709,7 +1709,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1717,17 +1717,17 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Scenes
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\Kitchen Chaos Project\Kitchen Chaos\Kitchen-Chaos\Kitchen
     Chaos
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 20}
-    m_SelectedIDs: 18790000
-    m_LastClickedID: 31000
-    m_ExpandedIDs: 000000000e79000010790000127900001479000016790000187900001a7900005c79000000ca9a3b
+    scrollPos: {x: 0, y: 36}
+    m_SelectedIDs: aa790000
+    m_LastClickedID: 31146
+    m_ExpandedIDs: 00000000527900005479000056790000587900005a7900005c7900005e790000c0790000907b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1755,7 +1755,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000e79000010790000127900001479000016790000187900001a790000
+    m_ExpandedIDs: 00000000527900005479000056790000587900005a7900005c7900005e790000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1783,7 +1783,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: 000000005a740000047b0000
+    m_ExpandedInstanceIDs: 000000005a740000047b0000b4ceffff
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
