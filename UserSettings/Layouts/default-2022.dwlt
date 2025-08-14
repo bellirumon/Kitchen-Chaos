@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 321}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 122
+  controlID: 121
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 26
+  controlID: 18
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 73
+  controlID: 50
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -302,8 +302,8 @@ MonoBehaviour:
     y: 0
     width: 548
     height: 939
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -792,9 +792,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 331.7336, y: 181.87679, z: 0}
+    m_Target: {x: 0.12747607, y: 1.7629272, z: 1.817938}
     speed: 2
-    m_Value: {x: 331.7336, y: 181.87679, z: 0}
+    m_Value: {x: 0.12747607, y: 1.7629272, z: 1.817938}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -822,15 +822,15 @@ MonoBehaviour:
       m_Size: {x: 1, y: 1}
     yGrid:
       m_Fade:
-        m_Target: 0
+        m_Target: 1
         speed: 2
-        m_Value: 0
+        m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
     zGrid:
       m_Fade:
-        m_Target: 1
+        m_Target: 0
         speed: 2
         m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
@@ -840,13 +840,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0, y: 0, z: 0, w: 1}
+    m_Target: {x: 0.24880117, y: 0.21430795, z: -0.056551855, w: 0.9428529}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0, w: 1}
+    m_Value: {x: 0.24896975, y: 0.21147847, z: -0.055805206, w: 0.94349176}
   m_Size:
-    m_Target: 270.40823
+    m_Target: 2.6640675
     speed: 2
-    m_Value: 270.40823
+    m_Value: 2.6640675
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1598,7 +1598,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -56210
+  m_LastSelectedObjectID: 33314
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1637,23 +1637,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 2acc0000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 8c1bffff3224ffff6e24ffff2225ffffd225ffff3e48ffff3a90ffff249cffff0cd2ffff26fbfffff46c00006a960000
+      m_SelectedIDs: 6eb4ffff
+      m_LastClickedID: -19346
+      m_ExpandedIDs: eabaffffecc2ffff42d4ffffd6dbffffd2f7ffff06f9ffff0efbffffa47b0000ec81000018820000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: PlayerVisual (3)
+        m_OriginalName: PlayerVisual (3)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -19346
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 10}
       m_SearchString: 
@@ -1709,7 +1709,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Kitchen Chaos Assets/Materials
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1717,7 +1717,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Kitchen Chaos Assets/Materials
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\Kitchen Chaos Project\Kitchen Chaos\Kitchen-Chaos\Kitchen
     Chaos
@@ -1725,9 +1725,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 36}
-    m_SelectedIDs: aa790000
-    m_LastClickedID: 31146
-    m_ExpandedIDs: 00000000527900005479000056790000587900005a7900005c7900005e790000c0790000907b000000ca9a3b
+    m_SelectedIDs: 666f0000
+    m_LastClickedID: 28518
+    m_ExpandedIDs: 00000000506f0000526f0000546f0000566f0000586f00005a6f00005c6f00006a6f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1755,7 +1755,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000527900005479000056790000587900005a7900005c7900005e790000
+    m_ExpandedIDs: 00000000506f0000526f0000546f0000566f0000586f00005a6f00005c6f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

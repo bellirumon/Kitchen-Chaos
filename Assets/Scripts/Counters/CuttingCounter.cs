@@ -8,6 +8,12 @@ public class CuttingCounter : BaseCounter, IHasProgress
 {
     //use event handler for this one so that we can pass "this" as the sender object
     public static event EventHandler OnAnyCut;
+
+    new public static void ResetStaticData()
+    {
+        OnAnyCut = null;
+    }
+
     public event Action<float> OnProgressChanged;
     public event Action OnCut;
 
