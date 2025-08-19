@@ -31,6 +31,8 @@ public class OptionsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _pauseText;
     [SerializeField] private Transform _pressToRebindKeyTransform;
 
+    private Action _onCloseButtonAction;
+
 
     private void Awake()
     {
@@ -58,6 +60,7 @@ public class OptionsUI : MonoBehaviour
         _closeButton.onClick.AddListener(() =>
         {
             Hide();
+            _onCloseButtonAction();
         });
 
         _moveUpButton.onClick.AddListener(() =>
@@ -126,8 +129,9 @@ public class OptionsUI : MonoBehaviour
     }
 
 
-    public void Show()
+    public void Show(Action onCloseButtonAction)
     {
+        _onCloseButtonAction = onCloseButtonAction;
         gameObject.SetActive(true);
     }
 
