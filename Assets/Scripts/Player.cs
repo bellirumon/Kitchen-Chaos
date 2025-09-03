@@ -175,7 +175,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
             transform.position += _moveDist * moveDir;
         }
 
-        //update player walking state
+        //update player walking _state
         IsWalking = (moveDir != Vector3.zero);
 
         //rotate player to face direction of movement

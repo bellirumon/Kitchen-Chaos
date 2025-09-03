@@ -21,7 +21,7 @@ public class StoveCounter : BaseCounter, IHasProgress
     [SerializeField] private FryingRecipeSO[] _fryingRecipeSOs;
     [SerializeField] private BurningRecipeSO[] _burningRecipeSOs;
 
-    private State state;
+    private State _state;
     private float _fryingTimer;
     private FryingRecipeSO _fryingRecipeSO;
     private float _burningTimer;
@@ -30,7 +30,7 @@ public class StoveCounter : BaseCounter, IHasProgress
 
     private void Start()
     {
-        state = State.Idle;
+        _state = State.Idle;
     }
 
 
@@ -38,7 +38,7 @@ public class StoveCounter : BaseCounter, IHasProgress
     {
         if (HasKitchenObject())
         {
-            switch (state)
+            switch (_state)
             {
                 case State.Idle:
                 break;
@@ -56,10 +56,10 @@ public class StoveCounter : BaseCounter, IHasProgress
                     KitchenObject.SpawnKitchenObject(_fryingRecipeSO.Output, this);
 
                     _burningRecipeSO = GetBurningRecipeSOWithInput(GetKitchenObject().KitchenObjectSO);
-                    state = State.Fried;
+                    _state = State.Fried;
                     _burningTimer = 0f;
 
-                    OnStateChanged?.Invoke(state);
+                    OnStateChanged?.Invoke(_state);
                 }
                 break;
 
@@ -75,9 +75,9 @@ public class StoveCounter : BaseCounter, IHasProgress
 
                     KitchenObject.SpawnKitchenObject(_burningRecipeSO.Output, this);
 
-                    state = State.Burned;
+                    _state = State.Burned;
 
-                    OnStateChanged?.Invoke(state);
+                    OnStateChanged?.Invoke(_state);
 
                     OnProgressChanged?.Invoke(0f);
                 }
@@ -108,10 +108,10 @@ public class StoveCounter : BaseCounter, IHasProgress
 
                     _fryingRecipeSO = GetFryingRecipeSOWithInput(GetKitchenObject().KitchenObjectSO);
 
-                    state = State.Frying;
+                    _state = State.Frying;
                     _fryingTimer = 0f;
 
-                    OnStateChanged?.Invoke(state);
+                    OnStateChanged?.Invoke(_state);
                     OnProgressChanged?.Invoke(_fryingTimer / _fryingRecipeSO.FryingTimerMax);
                 }
                 else
@@ -139,9 +139,9 @@ public class StoveCounter : BaseCounter, IHasProgress
                     {
                         GetKitchenObject().DestroySelf();
 
-                        state = State.Idle;
+                        _state = State.Idle;
 
-                        OnStateChanged?.Invoke(state);
+                        OnStateChanged?.Invoke(_state);
                         OnProgressChanged?.Invoke(0f);
                     }
                 }
@@ -153,9 +153,9 @@ public class StoveCounter : BaseCounter, IHasProgress
                 //transfer the object from the counter to the player
                 GetKitchenObject().SetKitchenObjectParent(player);
 
-                state = State.Idle;
+                _state = State.Idle;
 
-                OnStateChanged?.Invoke(state);
+                OnStateChanged?.Invoke(_state);
                 OnProgressChanged?.Invoke(0f);
             }
         }
@@ -211,5 +211,12 @@ public class StoveCounter : BaseCounter, IHasProgress
 
         return null;
     }
+
+
+    public bool IsFried()
+    {
+        return (_state == State.Fried);
+    }
+
 
 }
